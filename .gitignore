@@ -6,6 +6,7 @@
 *.ko
 *.obj
 *.elf
+*.efi
 
 # Linker output
 *.ilk
@@ -50,3 +51,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# OVMF
+*.fd
+/EFI
+BOOTX64.EFI
+fat.img
