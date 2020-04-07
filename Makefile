@@ -1,7 +1,7 @@
 TARGET    = BOOTX64.EFI
 
 CC        = x86_64-w64-mingw32-gcc
-CFLAGS    = -Wall -Wextra -nostdinc -nostdlib -fno-builtin -Wl,--subsystem,10
+CFLAGS    = -Wall -Wextra -Iinclude -nostdinc -nostdlib -fno-builtin -Wl,--subsystem,10
 
 OVMF      = /usr/share/OVMF
 
@@ -24,7 +24,7 @@ fat.img: BOOTX64.EFI
 	mmd -i fat.img ::/EFI/BOOT
 	mcopy -i fat.img BOOTX64.EFI ::/EFI/BOOT
 
-run: ${TARGET} fat.img
+run: ${TARGET} fat.img main.c
 	qemu-system-x86_64 -bios /usr/share/ovmf/OVMF.fd -net none -usbdevice disk::fat.img
 
 screenshot:
